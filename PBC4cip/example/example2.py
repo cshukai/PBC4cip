@@ -15,11 +15,9 @@ def import_data(trainFile, testFile):
 
 def split_data(train, test):
     X_train = train.iloc[:,  1:train.shape[1]]
-    y_train =  train.iloc[:,0]
-
+    y_train =  train.iloc[:,:1]
     X_test = test.iloc[:,  1:test.shape[1]]
-    y_test = test.iloc[:,0]
-
+    y_test = test.iloc[:,:1]
     return X_train, y_train, X_test, y_test
 
 def score(predicted, y):
@@ -70,10 +68,10 @@ def test_PBC4cip(trainFile, testFile):
             print(f"{confusion[i][j]} ", end='')
         print("")
     print(f"\n\nacc: {acc} , auc: {auc} , numPatterns: {len(patterns)}")
-    
+
 if __name__ == '__main__':
     current_location = os.path.dirname(os.path.abspath(__file__))
-    trainFile = current_location + '/cleveland-0_vs_4-5-3tra.csv'
-    testFile = current_location + '/cleveland-0_vs_4-5-3tst.csv'
+    trainFile = current_location + '/skin.train.csv'
+    testFile = current_location + '/skin.test.csv'
     test_PBC4cip(trainFile, testFile)
 
